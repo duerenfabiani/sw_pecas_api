@@ -45,7 +45,7 @@ const getPecas = (request, response) => {
 const addPecas = (request, response) => {
     const {nome, descricao, preco, estoque} = request.body
 
-    pool.query('INSERT INTO PECAS (nome, descricao, preco, estoque) values ($1, $2, $3, $4)',
+    pool.query('INSERT INTO pecas (nome, descricao, preco, estoque) values ($1, $2, $3, $4)',
         [nome, descricao, preco, estoque], 
         (error) => {
             if(error){
@@ -59,7 +59,7 @@ const addPecas = (request, response) => {
 const updatePecas = (request, response) => {
     const {codigo, nome, descricao, preco, estoque} = request.body
 
-    pool.query('UPDATE PECAS set nome = $1 , descricao = $2, preco = $3, estoque = $4 where codigo = $5',
+    pool.query('UPDATE pecas set nome = $1 , descricao = $2, preco = $3, estoque = $4 where codigo = $5',
         [nome, descricao, preco, estoque, codigo], 
         (error) => {
             if(error){
@@ -110,7 +110,7 @@ function verificaJWT(request, response, next) {
 app
     .route("/pecas")
     .get(getPecas)
-    .post( addPecas)
+    .post(addPecas)
     .put(updatePecas)
 
 
@@ -119,6 +119,9 @@ app
     .get(getPecasPorId)
     .delete(deletePecas)
 
+app
+    .route("/pecas/del/:id")
+    .delete(deletePecas)
 
  app
     .route("/login")

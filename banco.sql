@@ -7,6 +7,6 @@ create table pecas (
 codigo serial not null primary key, 
 nome varchar(50) not null,
 descricao varchar(50) not null, 
-preco double not null, 
+preco double precision, 
 estoque integer not null
 );
